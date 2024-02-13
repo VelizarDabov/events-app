@@ -1,16 +1,16 @@
-import Footer from "@/components/shared/Footer";
-import Header from "@/components/shared/Header";
+import Footer from "@/components/shared/Footer"
+import Header from "@/components/shared/Header"
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <div className="flex h-screen flex-col">
       <Header />
-      <body>{children}</body>
+      <main className="flex-1">{children}</main>
       <Footer />
-    </html>
-  );
+    </div>
+  )
 }

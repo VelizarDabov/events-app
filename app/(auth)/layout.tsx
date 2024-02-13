@@ -1,29 +1,9 @@
-import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
-import "./globals.css";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-poppins",
-});
-
-export const metadata: Metadata = {
-  title: "Events app",
-  description: "Events platform sistem",
-  icons:{
-    icon:'/public/vercel.svg'
-  }
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="en">
-      <body className={poppins.className}>{children}</body>
-    </html>
-  );
+    <div className="flex-center min-h-screen w-full bg-primary-50 bg-dotted-pattern bg-cover bg-fixed bg-center">
+      {children}
+    </div>
+  )
 }
+
+export default Layout
