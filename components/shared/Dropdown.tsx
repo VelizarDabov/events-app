@@ -1,3 +1,5 @@
+import { db } from "@/firebase";
+import { startTransition, useState, useEffect } from "react";
 import {
   Select,
   SelectContent,
@@ -16,22 +18,52 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { startTransition, useState } from "react";
 import { Input } from "../ui/input";
 
 type DropdownProps = {
   value?: string;
   onChangeHandler?: () => void;
 };
+
 type Category = {
-  _id: string;
+  id: string;
   name: string;
 };
 
 const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [newCategory, setNewCategory] = useState("");
-  const handleAddCategory = () => {};
+
+  useEffect(() => {
+    // Fetch categories from Firestore
+    const fetchCategories = async () => {
+      try {
+        const snapshot = await db.collection("categories").get();
+        const fetchedCategories: Category[] = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          name: doc.data().name,
+        }));
+        setCategories(fetchedCategories);
+      } catch (error) {
+        console.error("Error fetching categories: ", error);
+      }
+    };
+    fetchCategories();
+  }, []);
+
+  const handleAddCategory = async () => {
+    try {
+      const docRef = await db
+        .collection("categories")
+        .add({ name: newCategory });
+      const newCategoryItem: Category = { id: docRef.id, name: newCategory };
+      setCategories((prevCategories) => [...prevCategories, newCategoryItem]);
+      console.log("Category added successfully");
+    } catch (error) {
+      console.error("Error adding category: ", error);
+    }
+  };
+
   return (
     <Select onValueChange={onChangeHandler} defaultValue={value}>
       <SelectTrigger className="select-field">
@@ -41,8 +73,8 @@ const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
         {categories.length > 0 &&
           categories.map((category: Category) => (
             <SelectItem
-              key={category._id}
-              value={category._id}
+              key={category.id}
+              value={category.id}
               className="select-item p-regular-14"
             >
               {category.name}
@@ -50,7 +82,7 @@ const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
           ))}
         <AlertDialog>
           <AlertDialogTrigger className="p-medium-14 flex w-full rounded-sm py-3 pl-8 text-primary-500 hover:bg-primary-50 focus:text-primary-500">
-            Open
+            Add new category
           </AlertDialogTrigger>
           <AlertDialogContent className="bg-white">
             <AlertDialogHeader>
@@ -66,9 +98,7 @@ const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction
-                onClick={() => startTransition(handleAddCategory)}
-              >
+              <AlertDialogAction onClick={handleAddCategory}>
                 Add
               </AlertDialogAction>
             </AlertDialogFooter>

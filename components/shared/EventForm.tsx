@@ -14,6 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+
 import { Input } from "@/components/ui/input";
 import { formSchema } from "@/lib/validator";
 import * as z from "zod";
@@ -22,14 +23,7 @@ import Dropdown from "./Dropdown";
 import { Textarea } from "../ui/textarea";
 import FileUploader from "./FileUploader";
 import { useState } from "react";
-import {
-  Calendar,
-  DollarSign,
-  Link,
-  Locate,
-  LocateFixedIcon,
-  LocateIcon,
-} from "lucide-react";
+import { Calendar, DollarSign, Link, LocateIcon } from "lucide-react";
 interface Checkbox {
   isFree: boolean;
 }
@@ -41,15 +35,32 @@ const EventForm = ({ userId, type }: EventFormProps) => {
   const [files, setFiles] = useState<File[]>([]);
   const [startDate, setStartDate] = useState<Date>(new Date());
   const initialValues = eventDefaultValues;
+  const {
+    register,
+    handleSubmit,
+    formState,
+    reset,
+    setValue
+  } = useForm();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: initialValues,
   });
-  const onSubmit = () => {};
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    const eventData = values;
+console.log(eventData)
+
+    setValue('title', ''); // Assuming 'title' is the name of your input field
+    setValue('categoryId', '');
+    
+  };
   //
   return (
-    <Form onSubmit={form.handleSubmit(onSubmit)} {...form}>
-      <form className="flex flex-col gap-5">
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col gap-5"
+      >
         <div className="flex flex-col gap-5 md:flex-row ">
           <FormField
             control={form.control}
@@ -69,7 +80,7 @@ const EventForm = ({ userId, type }: EventFormProps) => {
           />
           <FormField
             control={form.control}
-            name="category"
+            name="categoryId"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
@@ -201,9 +212,7 @@ const EventForm = ({ userId, type }: EventFormProps) => {
                 <FormControl>
                   <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
                     <DollarSign className="text-gray-500 w-[24px] h-[24px]" />
-                    <p className="ml-3 whitespace-nowrap text-gray-500">
-                      Start Date:
-                    </p>
+                    
                     <Input
                       type="number"
                       placeholder="Price"
@@ -223,6 +232,8 @@ const EventForm = ({ userId, type }: EventFormProps) => {
                               >
                                 <span className="mr-2">Free Ticket</span>
                                 <Checkbox
+                                  onCheckedChange={field.onChange}
+                                  checked={field.value}
                                   id="isFree"
                                   className="border-2 w-5 h-5 border-primary-500"
                                   {...field}
