@@ -24,6 +24,7 @@ import { Textarea } from "../ui/textarea";
 import FileUploader from "./FileUploader";
 import { useState } from "react";
 import { Calendar, DollarSign, Link, LocateIcon } from "lucide-react";
+import { db } from "@/firebase";
 interface Checkbox {
   isFree: boolean;
 }
@@ -33,25 +34,28 @@ type EventFormProps = {
 };
 const EventForm = ({ userId, type }: EventFormProps) => {
   const [files, setFiles] = useState<File[]>([]);
-  const [startDate, setStartDate] = useState<Date>(new Date());
+//   const [startDate, setStartDate] = useState<Date>(new Date());
   const initialValues = eventDefaultValues;
-  const {
-    register,
-    handleSubmit,
-    formState,
-    reset,
-    setValue
-  } = useForm();
+//   const {
+//     register,
+//     handleSubmit,
+//     formState,
+//     reset,
+//     setValue
+//   } = useForm();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: initialValues,
   });
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const eventData = values;
-console.log(eventData)
-
-    setValue('title', ''); // Assuming 'title' is the name of your input field
-    setValue('categoryId', '');
+try{
+    await db.collection('events').add(values);
+console.log('Successfylly')
+form.reset()
+}catch(error){
+    console.log('Error', error)
+}
     
   };
   //
