@@ -29,6 +29,7 @@ export type CreateUserParams = {
       isFree: boolean
       url: string
       organization:string
+      userId:string
     }
     path: string
   }

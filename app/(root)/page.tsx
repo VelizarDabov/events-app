@@ -3,11 +3,9 @@ import Collection from "@/components/shared/Collection";
 import { Button } from "@/components/ui/button";
 import { db } from "@/firebase";
 import { CreateEventParams } from "@/types";
-
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
 export default function Home() {
   const [events, setEvents] = useState<CreateEventParams[]>([]);
   useEffect(() => {
@@ -42,7 +40,7 @@ export default function Home() {
     };
     fetchEvents();
   }, []);
-  // console.log(events);
+
   return (
     <>
       <section className="bg-gray-200 bg-dotted-pattern bg-contain py-5 md:py-10">
@@ -88,6 +86,7 @@ export default function Home() {
             page={1}
             totalPages={2}
           />
+       
         </div>
       </section>
     </>

@@ -14,14 +14,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
 import { Input } from "@/components/ui/input";
 import { formSchema } from "@/lib/validator";
 import * as z from "zod";
 import { eventDefaultValues } from "@/constants";
 import Dropdown from "./Dropdown";
 import { Textarea } from "../ui/textarea";
-import FileUploader from "./FileUploader";
 import { useState } from "react";
 import { Calendar, DollarSign, Link, LocateIcon } from "lucide-react";
 import { db } from "@/firebase";

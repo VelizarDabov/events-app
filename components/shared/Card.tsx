@@ -1,15 +1,16 @@
-import { db } from "@/firebase";
+
 import { formatDateTime } from "@/lib/utils";
+import { CreateEventParams } from "@/types";
 // import { auth } from "@clerk/nextjs";
 import { ArrowBigDown, Edit } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+
 // import DeleteConformation from "./DeleteConformation";
 
 
 type CardProps = {
-  event: Event;
+  event: CreateEventParams;
   hasOrderLink?: boolean;
   hidePrice?: boolean;
 };
@@ -66,6 +67,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
           <p className="p-medium-14 md:p-medium-16 text-gray-600">
             {event.event.organization}
           </p>
+          {/* maybe problem wit event.userID */}
           {hasOrderLink && (
             <Link
               href={`/orders?eventId=${event.event.userId}`}
