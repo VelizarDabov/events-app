@@ -41,14 +41,14 @@ const EventDetails = () => {
   }, []);
 
   return (
-    <section className="flex justify-center bg-primary-50 bg-dotted-pattern bg-contain">
+    <section className="flex justify-center bg-primary-50 bg-dotted-pattern bg-contain ">
       <div className="grid grid-cols-1 md:grid-cols-2 2xl:max-w7xl">
-        {/* <Image src={} alt="hero image" height={1000} width={1000} className="h-full min-h-[300px] object-cover object-center"/> */}
+        <Image src='https://images.pexels.com/photos/13791400/pexels-photo-13791400.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt="hero image" height={1000} width={1000}   className="h-full min-h-[300px] object-cover object-center rounded-md transform hover:scale-105 transition duration-300 shadow-xl"/>
         <div className="flex w-ful flex-col gap-8 p-5 md:p-10">
           {events.map((event) => (
             <div
               key={event.userId}
-              className="flex w-full flex-col gap-8 p-5 md:p-10"
+              className="flex w-full flex-col gap-8 p-5 md:p-10  hover:scale-105 transition duration-300 shadow-xl"
             >
               <div className="flex flex-col gap-6">
                 <h2 className="h2-bold">{event.event.title}</h2>

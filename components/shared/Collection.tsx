@@ -1,8 +1,23 @@
 import React from "react";
 import Card from "./Card";
-
+interface Event {
+  event: {
+    title: string;
+    description: string;
+    location: string;
+    imageUrl: string;
+    startDateTime: Date;
+    endDateTime: Date;
+    categoryId: string;
+    price: string;
+    isFree: boolean;
+    url: string;
+  };
+  userId: string;
+  path: string;
+}
 type CollectionProps = {
-  data: Array<{ title: string }>;
+  data: Event[]
   emptyTitle: string;
   emptyStateSubtext: string;
   limit: number;
@@ -20,7 +35,6 @@ const Collection = ({
   collectionType,
   urlParamName,
 }: CollectionProps) => {
-  console.log(data);
   return (
     <>
       {data.length > 0 ? (
@@ -32,7 +46,11 @@ const Collection = ({
 
               return (
                 <li key={index}>
-                  <Card event={event} hasOrderLink={hasOrderLink} hidePrice={hidePrice} />
+                  <Card
+                    event={event}
+                    hasOrderLink={hasOrderLink}
+                    hidePrice={hidePrice}
+                  />
                 </li>
               );
             })}

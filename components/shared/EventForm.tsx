@@ -127,22 +127,22 @@ form.reset()
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="imageUrl"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormControl className="h-72">
-                  <FileUploader
-                    onFieldChange={field.onChange}
-                    imageUrl={field.value}
-                    setFiles={setFiles}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+     <FormField
+  control={form.control}
+  name="imageUrl"
+  render={({ field }) => (
+    <FormItem className="w-full">
+      <FormControl className="h-72">
+      <Input
+                      placeholder="Image URL"
+                      {...field}
+                      className="text-area rounded-2xl"
+                    />
+      </FormControl>
+      <FormMessage />
+    </FormItem>
+  )}
+/>
         </div>
         <div className="flex flex-col gap-5 md:flex-row">
           <FormField

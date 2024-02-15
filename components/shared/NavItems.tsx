@@ -1,7 +1,9 @@
 "use client";
 import { headerLinks } from "@/constants";
-import { Link } from "lucide-react";
+
 import { usePathname } from "next/navigation";
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 const NavItems = () => {
   const pathname = usePathname();
@@ -10,18 +12,17 @@ const NavItems = () => {
       {headerLinks.map((link) => {
         const isActive = pathname === link.route;
         return (
-          <li
+          <div
             key={link.route}
             className={`${
               isActive ? "text-primary" : "text-gray-500"
             } flex-center p-medium-16 whitespace-nowrap `}
           >
-            <div>
-              {link.label}
-            {/* <Link href={link.route}> {link.label}</Link> */}
-            </div>
+          <Link href={link.route}>
+      {link.label}
+          </Link>
            
-          </li>
+          </div>
         );
       })}
     </ul>

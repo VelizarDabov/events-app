@@ -11,7 +11,9 @@ const FileUploader = ({
   onFieldChange,
   setFiles,
 }: FileUploadProps) => {
-  return <div className="flex  border-2 text-red-500 items-center justify-center font-bold">FileUploader(in progress)</div>;
+  return <div className="flex  border-2 text-red-500 items-center justify-center font-bold">FileUploader(in progress)
+ 
+  </div>;
 };
 
 export default FileUploader;

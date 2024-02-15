@@ -2,12 +2,14 @@ import { db } from "@/firebase";
 import { formatDateTime } from "@/lib/utils";
 // import { auth } from "@clerk/nextjs";
 import { ArrowBigDown, Edit } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 // import DeleteConformation from "./DeleteConformation";
 
+
 type CardProps = {
-  event: [];
+  event: Event;
   hasOrderLink?: boolean;
   hidePrice?: boolean;
 };
@@ -18,12 +20,14 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
   // const userId = sessionClaims?.userId as string;
   // const isEventCreator = userId === event.userId;
   return (
-    <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[43px]">
-      <Link
-        href={`/events/${event.event.categoryId}`}
-        style={{ backgroundImage: `url(${event.event.imageUrl})` }}
-        className="flex-center flex-grow bg-gray-200 bg-cover bg-center text-gray-500"
-      />
+    <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white  transition-all hover:shadow-lg md:min-h-[43px]  hover:scale-105 duration-300 shadow-xl">
+     <Link
+  href={`/events/${event.event.categoryId}`}
+  style={{ backgroundImage: `url(${event.event.imageUrl})` }} // Add url() around the imageUrl
+  className="flex-center flex-grow bg-gray-200 bg-cover bg-center text-gray-500"
+>
+  <Image src={event.event.imageUrl} alt="event emage" width={300} height={150}/>
+</Link>
       {/* {isEventCreator && !hidePrice && (
         <div className="absolute right-2 top-2 flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
           <Link href={`/events/${event.userId}/update`}>
