@@ -30,6 +30,7 @@ export default function Home() {
               startDateTime: eventData.startDateTime.toDate(), // Convert Firestore timestamp to JavaScript Date object
               title: eventData.title,
               url: eventData.url,
+              organization:eventData.organization,
             },
             path: doc.ref.path,
           };
@@ -41,7 +42,7 @@ export default function Home() {
     };
     fetchEvents();
   }, []);
-  console.log(events);
+  // console.log(events);
   return (
     <>
       <section className="bg-gray-200 bg-dotted-pattern bg-contain py-5 md:py-10">

@@ -28,6 +28,7 @@ export type CreateUserParams = {
       price: string
       isFree: boolean
       url: string
+      organization:string
     }
     path: string
   }

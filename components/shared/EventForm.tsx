@@ -27,6 +27,7 @@ import { Calendar, DollarSign, Link, LocateIcon } from "lucide-react";
 import { db } from "@/firebase";
 interface Checkbox {
   isFree: boolean;
+  
 }
 type EventFormProps = {
   userId: string;
@@ -34,21 +35,14 @@ type EventFormProps = {
 };
 const EventForm = ({ userId, type }: EventFormProps) => {
   const [files, setFiles] = useState<File[]>([]);
-//   const [startDate, setStartDate] = useState<Date>(new Date());
   const initialValues = eventDefaultValues;
-//   const {
-//     register,
-//     handleSubmit,
-//     formState,
-//     reset,
-//     setValue
-//   } = useForm();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: initialValues,
   });
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const eventData = values;
+    // const eventData = values;
 try{
     await db.collection('events').add(values);
 console.log('Successfylly')
@@ -58,7 +52,6 @@ form.reset()
 }
     
   };
-  //
   return (
     <Form {...form}>
       <form
@@ -99,6 +92,24 @@ form.reset()
           />
         </div>
 
+<div className="flex  gap-5 md:flex-row ">
+          <FormField
+            control={form.control}
+            name="organization"
+            render={({ field }) => (
+              <FormItem className="w-full ">
+                <FormControl>
+                  <Input
+                    placeholder="Event Organization"
+                    {...field}
+                    className="input-field"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+</div>
         <div className="flex flex-col gap-5 md:flex-row">
           <FormField
             control={form.control}

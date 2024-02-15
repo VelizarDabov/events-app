@@ -17,4 +17,5 @@ export const formSchema = z.object({
   price: z.string(),
   isFree: z.boolean(),
   url: z.string().url(),
+  organization:z.string(),
 });
