@@ -24,10 +24,10 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
     <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white  transition-all hover:shadow-lg md:min-h-[43px]  hover:scale-105 duration-300 shadow-xl">
      <Link
   href={`/events/${event.userId}/${event.event.categoryId}`}
-  style={{ backgroundImage: `url(${event.event.imageUrl})` }} // Add url() around the imageUrl
-  className="flex-center flex-grow bg-gray-200 bg-cover bg-center text-gray-500"
+  style={{ backgroundImage: ` url(${event.event.imageUrl} )`, height: '200px', width:'380',opacity:'50' ,boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.3)'}} // Add url() around the imageUrl
+  className="flex-center flex-grow bg-gray-200 bg-cover bg-center text-gray-500 "
 >
-  <Image src={event.event.imageUrl} alt="event emage" width={300} height={150}/>
+  <Image src={event.event.imageUrl} alt="event emage" width={200} height={150} className="  hover:scale-105 duration-300 shadow-xl"/>
 </Link>
       {/* {isEventCreator && !hidePrice && (
         <div className="absolute right-2 top-2 flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">

@@ -47,12 +47,11 @@ export default function Home() {
         <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0">
           <div className="flex flex-col justify-center gap-8">
             <h1 className="h1-bold">
-              Host, Connect, CelebrateL Your Events, Our Platform!
+            Explore, Learn, Grow: Embark on Your Course Journey with Us!
             </h1>
             <p className="p-regular-20 md:p-regular-24">
               {" "}
-              Book and learn helpful tips from 1,234+ mentors in world-class
-              companies with our global community.
+              Access insights from 1,234+ mentors across top global companies. Join our community and learn from the best!
             </p>
             <Button size="lg" asChild className="button w-full sm:w-fit">
               <Link href="#events">Explore Now</Link>
@@ -74,8 +73,8 @@ export default function Home() {
       >
         <h2 className="h2-bold">
           {" "}
-          Trusted by <br /> <span className="text-blue-600 underline">
-          Thousands of Events...
+          Empowering Thousands of Events <br /> <span className="text-blue-600 underline">
+          One Trusted Platform.
             </span>
         </h2>
         <div className="flex justify-center items-center w-full flex-col gap-5 md:flex-row">

@@ -5,7 +5,6 @@ import { formatDateTime } from "@/lib/utils";
 import { CreateEventParams } from "@/types";
 import { Calendar, Locate } from "lucide-react";
 import Image from "next/image";
-import RenderAll from "@/components/shared/EventsInCategory";
 import Collection from "@/components/shared/Collection";
 import { usePathname } from "next/navigation";
 
@@ -28,6 +27,7 @@ const EventDetails = () => {
             return {
               userId: doc.id,
               event: {
+                organization:eventData.organization,
                 categoryId: eventData.categoryId,
                 description: eventData.description,
                 endDateTime: eventData.endDateTime.toDate(),
@@ -86,31 +86,30 @@ useEffect(() =>{
   return (
     <>
 
-      <section className="flex justify-center bg-primary-50 bg-dotted-pattern bg-contain ">
+      <section className="flex justify-center   bg-gray-100 bg-dotted-pattern bg-contain ">
         <div className="grid grid-cols-1 md:grid-cols-2 2xl:max-w-7xl">
-          {/* <Image
-            src="https://images.pexels.com/photos/13791400/pexels-photo-13791400.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt="hero image"
-            height={1000}
-            width={1000}
-            className=" hidden md:flex h-full w-full flex-col gap-8 p-5 md:p-10  hover:scale-105 transition duration-300 shadow-xl"
-          /> */}
-        
             {events.map((event) => (
               <>
-              <div key={event.userId} className="flex w-full object-fit">
+              <div key={event.userId} className="flex w-full  m-5 object-fit">
               <Image
+              src={event.event.imageUrl}
+            className="max-h-[100vh] object-contain object-center 2xl:max-h[100vh] "
+            width={1000}
+            height={1000}
+            alt="image"
+          />
+              {/* <Image
                   src={event.event.imageUrl}
                   alt="event emage"
                   width={300}
                   height={150}
-                  className="flex w-full flex-col"
-                />
+                  className="flex w-full flex-col transition duration-300 shadow-xl"
+                /> */}
               </div>
 
                <div
                 key={event.userId}
-                className="flex w-full flex-col gap-8 p-5 md:p-10  hover:scale-105 transition duration-300 shadow-xl"
+                className="flex w-full flex-col m-5 gap-8 p-5 md:p-10  bg-white  transition duration-300 shadow-xl"
               >
                 <div className="flex w-full flex-col gap-8 p-6 md:p-10">
                   <h2 className="h2-bold">{event.event.title}</h2>

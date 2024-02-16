@@ -1,17 +1,17 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 const firebaseConfig = {
-    apiKey: "AIzaSyBF3gjVKumVbMIjASJdyn-YSXb_-cPHGWc",
-    authDomain: "clone-69161.firebaseapp.com",
-    projectId: "clone-69161",
-    storageBucket: "clone-69161.appspot.com",
-    messagingSenderId: "694707186793",
-    appId: "1:694707186793:web:4a7968417798a70f8546f8"
-  };
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+};
 
-  const firebaseApp = firebase.initializeApp(firebaseConfig);
-  const db = firebaseApp.firestore();
-  const auth = firebaseApp.auth();
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+const db = firebaseApp.firestore();
+const auth = firebaseApp.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
-export {db, auth, provider}
+export { db, auth, provider };
