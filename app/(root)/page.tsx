@@ -14,10 +14,10 @@ export default function Home() {
         const snapshot = await db.collection("events").get();
         const fetchedEvents: CreateEventParams[] = snapshot.docs.map((doc) => {
           const eventData = doc.data();
-
           return {
             userId: doc.id,
             event: {
+              _id: doc.id,
               categoryId: eventData.categoryId,
               description: eventData.description,
               endDateTime: eventData.endDateTime.toDate(), // Convert Firestore timestamp to JavaScript Date object
@@ -69,14 +69,16 @@ export default function Home() {
       </section>
 
       <section
-        className="wrapper my-8 flex flex-col  gap-8 md:gap-12"
+        className="wrapper my-8 flex flex-col  gap-8 md:gap-12 "
         id="events"
       >
         <h2 className="h2-bold">
           {" "}
-          Trusted by <br /> Thousands of Events{" "}
+          Trusted by <br /> <span className="text-blue-600 underline">
+          Thousands of Events...
+            </span>
         </h2>
-        <div className="flex w-full flex-col gap-5 md:flex-row">
+        <div className="flex justify-center items-center w-full flex-col gap-5 md:flex-row">
           <Collection
             data={events}
             emptyTitle="No Events Found"

@@ -63,6 +63,7 @@ export type CreateUserParams = {
     limit: number
     page: number
   }
+ 
   
   export type GetEventsByUserParams = {
     userId: string
