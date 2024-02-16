@@ -106,7 +106,7 @@ const EventDetails = () => {
               </div>
 
                <div
-                key={event.userId}
+                key={event.event.categoryId}
                 className="flex w-full flex-col m-5 gap-8 p-5 md:p-10  bg-white  transition duration-300 shadow-xl"
               >
                 <div className="flex w-full flex-col gap-8 p-6 md:p-10">
