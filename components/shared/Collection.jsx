@@ -1,31 +1,31 @@
 import React from "react";
 import Card from "./Card";
-interface Event {
-  event: {
-    title: string;
-    description: string;
-    location: string;
-    imageUrl: string;
-    startDateTime: Date;
-    endDateTime: Date;
-    categoryId: string;
-    price: string;
-    isFree: boolean;
-    url: string;
-  };
-  userId: string;
-  path: string;
-}
-type CollectionProps = {
-  data: Event[]
-  emptyTitle: string;
-  emptyStateSubtext: string;
-  limit: number;
-  page: string | number;
-  totalPages?: number;
-  urlParamName?: string;
-  collectionType?: "Events_Organized" | "My_Tickets" | "All_Events";
-};
+// interface Event {
+//   event: {
+//     title: string;
+//     description: string;
+//     location: string;
+//     imageUrl: string;
+//     startDateTime: Date;
+//     endDateTime: Date;
+//     categoryId: string;
+//     price: string;
+//     isFree: boolean;
+//     url: string;
+//   };
+//   userId: string;
+//   path: string;
+// }
+// type CollectionProps = {
+//   data: Event[]
+//   emptyTitle: string;
+//   emptyStateSubtext: string;
+//   limit: number;
+//   page: string | number;
+//   totalPages?: number;
+//   urlParamName?: string;
+//   collectionType?: "Events_Organized" | "My_Tickets" | "All_Events";
+// };
 const Collection = ({
   data,
   emptyTitle,
@@ -34,7 +34,7 @@ const Collection = ({
   totalPages = 0,
   collectionType,
   urlParamName,
-}: CollectionProps) => {
+}) => {
 
   return (
     <>

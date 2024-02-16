@@ -23,23 +23,23 @@ import { Textarea } from "../ui/textarea";
 import { useState } from "react";
 import { Calendar, DollarSign, Link, LocateIcon } from "lucide-react";
 import { db } from "@/firebase";
-interface Checkbox {
-  isFree: boolean;
+// interface Checkbox {
+//   isFree: boolean;
   
-}
-type EventFormProps = {
-  userId: string;
-  type: "Create" | "Update";
-};
-const EventForm = ({ userId, type }: EventFormProps) => {
-  const [files, setFiles] = useState<File[]>([]);
+// }
+// type EventFormProps = {
+//   userId: string;
+//   type: "Create" | "Update";
+// };
+const EventForm = ({ userId, type }) => {
+  const [files, setFiles] = useState([]);
   const initialValues = eventDefaultValues;
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: initialValues,
   });
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values) => {
     // const eventData = values;
 try{
     await db.collection('events').add(values);
@@ -177,7 +177,7 @@ form.reset()
                     </p>
                     <DatePicker
                       selected={field.value}
-                      onChange={(date: Date) => field.onChange(date)}
+                      onChange={(date) => field.onChange(date)}
                       showTimeSelect
                       timeInputLabel="Time:"
                       dateFormat="MM/dd/yyyy h:mm aa"
@@ -203,7 +203,7 @@ form.reset()
                     </p>
                     <DatePicker
                       selected={field.value}
-                      onChange={(date: Date) => field.onChange(date)}
+                      onChange={(date) => field.onChange(date)}
                       showTimeSelect
                       timeInputLabel="Time:"
                       dateFormat="MM/dd/yyyy h:mm aa"

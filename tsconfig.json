@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/shared/EventForm.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/shared/EventForm.jsx", "components/shared/Collection.jsx", "app/(root)/events/[id]/[eventId]/page.jsx", "app/(root)/page.jsx"],
   "exclude": ["node_modules"]
 }

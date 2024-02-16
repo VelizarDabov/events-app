@@ -15,13 +15,13 @@ const EventDetails = () => {
   const parts = url.split('/');
   const id = parts[parts.length - 2]; // ID is the second last part of the URL
   const categoryId = parts[parts.length - 1];
-  const [events, setEvents] = useState<CreateEventParams[]>([]);
-  const [eventsWithSameCategory, setEventsWithSameCategory] = useState<CreateEventParams[]>([]);
+  const [events, setEvents] = useState>([]);
+  const [eventsWithSameCategory, setEventsWithSameCategory] = useState([]);
   useEffect(() => {
     const fetchEvents = async () => {
       try {
         const snapshot = await db.collection("events").get();
-        const fetchedEvents: CreateEventParams[] = snapshot.docs
+        const fetchedEvents = snapshot.docs
           .map((doc) => {
             const eventData = doc.data();
             return {
@@ -51,7 +51,7 @@ const EventDetails = () => {
     const fetchEventsWithSameCategory = async () => {
     try {
       const snapshot = await db.collection("events").get();
-      const fetchedEvents: CreateEventParams[] = snapshot.docs
+      const fetchedEvents = snapshot.docs
         .map((doc) => {
           const eventData = doc.data();
           return {
@@ -80,9 +80,7 @@ const EventDetails = () => {
     fetchEvents();
     fetchEventsWithSameCategory()
   }, []);
-useEffect(() =>{
-
-} )
+  console.log(events)
   return (
     <>
 
