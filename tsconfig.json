@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/shared/EventForm.jsx", "components/shared/Collection.jsx", "app/(root)/events/[id]/[eventId]/page.jsx", "app/(root)/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/shared/EventForm.tsx", "components/shared/Collection.tsx", "app/(root)/events/[id]/[eventId]/page.tsx", "app/(root)/page.tsx"],
   "exclude": ["node_modules"]
 }

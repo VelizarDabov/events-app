@@ -15,8 +15,8 @@ const EventDetails = () => {
   const parts = url.split('/');
   const id = parts[parts.length - 2]; // ID is the second last part of the URL
   const categoryId = parts[parts.length - 1];
-  const [events, setEvents] = useState>([]);
-  const [eventsWithSameCategory, setEventsWithSameCategory] = useState([]);
+  const [events, setEvents] = useState<CreateEventParams[]>([]);
+  const [eventsWithSameCategory, setEventsWithSameCategory] = useState<CreateEventParams[]>([]);
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -40,7 +40,7 @@ const EventDetails = () => {
                 url: eventData.url,
               },
               path: doc.ref.path,
-            };
+            } as CreateEventParams;
           })
           .filter((event) => id === event.userId); // Filter events based on the categoryId
         setEvents(fetchedEvents);
@@ -69,7 +69,7 @@ const EventDetails = () => {
               url: eventData.url,
             },
             path: doc.ref.path,
-          };
+          } as CreateEventParams;
         })
         .filter((event) => categoryId === event.event.categoryId && id !== event.userId) ; // Filter events based on the categoryId
       setEventsWithSameCategory(fetchedEvents);
@@ -80,7 +80,7 @@ const EventDetails = () => {
     fetchEvents();
     fetchEventsWithSameCategory()
   }, []);
-  console.log(events)
+ 
   return (
     <>
 

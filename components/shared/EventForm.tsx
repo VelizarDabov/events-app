@@ -23,15 +23,15 @@ import { Textarea } from "../ui/textarea";
 import { useState } from "react";
 import { Calendar, DollarSign, Link, LocateIcon } from "lucide-react";
 import { db } from "@/firebase";
-// interface Checkbox {
-//   isFree: boolean;
+interface Checkbox {
+  isFree: boolean;
   
-// }
-// type EventFormProps = {
-//   userId: string;
-//   type: "Create" | "Update";
-// };
-const EventForm = ({ userId, type }) => {
+}
+type EventFormProps = {
+  userId: string;
+  type: "Create" | "Update";
+};
+const EventForm = ({ userId, type }: EventFormProps) => {
   const [files, setFiles] = useState([]);
   const initialValues = eventDefaultValues;
 
@@ -39,7 +39,7 @@ const EventForm = ({ userId, type }) => {
     resolver: zodResolver(formSchema),
     defaultValues: initialValues,
   });
-  const onSubmit = async (values) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     // const eventData = values;
 try{
     await db.collection('events').add(values);
@@ -249,7 +249,7 @@ form.reset()
                                   checked={field.value}
                                   id="isFree"
                                   className="border-2 w-5 h-5 border-primary-500"
-                                  {...field}
+                                  // {...field}
                                 />
                               </label>
                             </div>

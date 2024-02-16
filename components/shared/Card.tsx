@@ -68,7 +68,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
             {event.event.organization}
           </p>
           {/* maybe problem wit event.userID */}
-          {hasOrderLink && (
+          {/* {hasOrderLink && (
             <Link
               href={`/orders?eventId=${event.event.userId}`}
               className="flex gap-2"
@@ -76,7 +76,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
               <p className="text-primary-500 ">Order Details</p>
               <ArrowBigDown className="w-[10px] h-[10px]" />
             </Link>
-          )}
+          )} */}
         </div>
     </div>
     </div>

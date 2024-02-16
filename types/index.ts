@@ -18,6 +18,7 @@ export type CreateUserParams = {
   export type CreateEventParams = {
     userId: string
     event: {
+      _id:string
       title: string
       description: string
       location: string
@@ -29,7 +30,6 @@ export type CreateUserParams = {
       isFree: boolean
       url: string
       organization:string
-      userId:string
     }
     path: string
   }

@@ -7,12 +7,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 export default function Home() {
-  const [events, setEvents] = useState>([]);
+  const [events, setEvents] = useState<CreateEventParams[]>([]);
   useEffect(() => {
     const fetchEvents = async () => {
       try {
         const snapshot = await db.collection("events").get();
-        const fetchedEvents = snapshot.docs.map((doc) => {
+        const fetchedEvents:CreateEventParams[] = snapshot.docs.map((doc) => {
           const eventData = doc.data();
           return {
             userId: doc.id,
