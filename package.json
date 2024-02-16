@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "buildCommand": "next build",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -36,6 +37,7 @@
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "uploadthing": "^6.3.3",
+    "vercel": "^33.5.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
