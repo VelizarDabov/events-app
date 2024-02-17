@@ -1,13 +1,8 @@
 
 import { formatDateTime } from "@/lib/utils";
 import { CreateEventParams } from "@/types";
-// import { auth } from "@clerk/nextjs";
-import { ArrowBigDown, Edit } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
-// import DeleteConformation from "./DeleteConformation";
-
 
 type CardProps = {
   event: CreateEventParams;
@@ -15,11 +10,6 @@ type CardProps = {
   hidePrice?: boolean;
 };
 const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
- 
-
-  // const { sessionClaims } = auth();
-  // const userId = sessionClaims?.userId as string;
-  // const isEventCreator = userId === event.userId;
   return (
     <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white  transition-all hover:shadow-lg md:min-h-[43px]  hover:scale-105 duration-300 shadow-xl">
      <Link
@@ -66,17 +56,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
         <div className="flex-between w-full">
           <p className="p-medium-14 md:p-medium-16 text-gray-600">
             {event.event.organization}
-          </p>
-          {/* maybe problem wit event.userID */}
-          {/* {hasOrderLink && (
-            <Link
-              href={`/orders?eventId=${event.event.userId}`}
-              className="flex gap-2"
-            >
-              <p className="text-primary-500 ">Order Details</p>
-              <ArrowBigDown className="w-[10px] h-[10px]" />
-            </Link>
-          )} */}
+</p>
         </div>
     </div>
     </div>

@@ -7,6 +7,7 @@ import { Calendar, Locate } from "lucide-react";
 import Image from "next/image";
 import Collection from "@/components/shared/Collection";
 import { usePathname } from "next/navigation";
+import CheckoutBtn from "@/components/shared/CheckoutBtn";
 
 const EventDetails = () => {
   const url = usePathname();
@@ -87,14 +88,14 @@ const EventDetails = () => {
   return (
     <>
       <section className="flex justify-center   bg-gray-100  bg-contain ">
-        <div className="grid grid-cols-1 md:grid-cols-2 2xl:max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 mx-5 2xl:max-w-7xl">
           {events.map((event) => (
             <React.Fragment key={event.userId}>
-              <div className="flex w-full  m-5 object-fit">
+              <div className="flex w-full  object-fit">
                 <Image
                   key={event.event.imageUrl}
                   src={event.event.imageUrl}
-                  className="max-h-[100vh] object-contain object-center 2xl:max-h[100vh] "
+                  className="max-h-[100vh] object-contain object-center 2xl:max-h[100vh] md:mx-auto sm:mx-auto "
                   width={1000}
                   height={1000}
                   alt="image"
@@ -103,9 +104,9 @@ const EventDetails = () => {
 
               <div
                 key={event.event.categoryId}
-                className="flex w-full flex-col m-5 gap-8 p-5 md:p-10  bg-white  transition duration-300 shadow-xl"
+                className="flex w-full flex-col  gap-8 p-5 md:p-10  bg-white  transition duration-300 shadow-xl"
               >
-                <div className="flex w-full flex-col gap-8 p-6 md:p-10">
+                <div className="flex w-full flex-col gap-8 p-2 md:p-6">
                   <h2 className="h2-bold">{event.event.title}</h2>
 
                   <div className="flex flex-col gap-3 sm:flex-row items-center">
@@ -119,7 +120,7 @@ const EventDetails = () => {
                       <h3 className="ml-2">by {event.event.organization}</h3>
                     </div>
                   </div>
-                  {/* <CheckoutButton event={event} /> */}
+                  <CheckoutBtn event={event} />
                   <div className="flex flex-col gap-5">
                     <div className="flex gap-2 md:gap-3">
                       <Calendar

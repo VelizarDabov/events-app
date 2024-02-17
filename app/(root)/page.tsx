@@ -1,5 +1,6 @@
 "use client";
 import Collection from "@/components/shared/Collection";
+import Search from "@/components/shared/Search";
 import { Button } from "@/components/ui/button";
 import { db } from "@/firebase";
 import { CreateEventParams } from "@/types";
@@ -77,6 +78,9 @@ export default function Home() {
           One Trusted Platform.
             </span>
         </h2>
+        <div className="flex w-full flex-col gap-5 md:flex-row">
+          <Search />
+        </div>
         <div className="flex justify-center items-center w-full flex-col gap-5 md:flex-row">
           <Collection
             data={events}
