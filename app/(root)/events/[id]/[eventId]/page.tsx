@@ -8,15 +8,15 @@ import Image from "next/image";
 import Collection from "@/components/shared/Collection";
 import { usePathname } from "next/navigation";
 
-
-
 const EventDetails = () => {
   const url = usePathname();
-  const parts = url.split('/');
+  const parts = url.split("/");
   const id = parts[parts.length - 2]; // ID is the second last part of the URL
   const categoryId = parts[parts.length - 1];
   const [events, setEvents] = useState<CreateEventParams[]>([]);
-  const [eventsWithSameCategory, setEventsWithSameCategory] = useState<CreateEventParams[]>([]);
+  const [eventsWithSameCategory, setEventsWithSameCategory] = useState<
+    CreateEventParams[]
+  >([]);
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -27,7 +27,7 @@ const EventDetails = () => {
             return {
               userId: doc.id,
               event: {
-                organization:eventData.organization,
+                organization: eventData.organization,
                 categoryId: eventData.categoryId,
                 description: eventData.description,
                 endDateTime: eventData.endDateTime.toDate(),
@@ -49,69 +49,65 @@ const EventDetails = () => {
       }
     };
     const fetchEventsWithSameCategory = async () => {
-    try {
-      const snapshot = await db.collection("events").get();
-      const fetchedEvents = snapshot.docs
-        .map((doc) => {
-          const eventData = doc.data();
-          return {
-            userId: doc.id,
-            event: {
-              categoryId: eventData.categoryId,
-              description: eventData.description,
-              endDateTime: eventData.endDateTime.toDate(),
-              imageUrl: eventData.imageUrl,
-              isFree: eventData.isFree,
-              location: eventData.location,
-              price: eventData.price,
-              startDateTime: eventData.startDateTime.toDate(),
-              title: eventData.title,
-              url: eventData.url,
-            },
-            path: doc.ref.path,
-          } as CreateEventParams;
-        })
-        .filter((event) => categoryId === event.event.categoryId && id !== event.userId) ; // Filter events based on the categoryId
-      setEventsWithSameCategory(fetchedEvents);
-    } catch (error) {
-      console.log("Error-eventsID", error);
-    }
-  };
+      try {
+        const snapshot = await db.collection("events").get();
+        const fetchedEvents = snapshot.docs
+          .map((doc) => {
+            const eventData = doc.data();
+            return {
+              userId: doc.id,
+              event: {
+                categoryId: eventData.categoryId,
+                description: eventData.description,
+                endDateTime: eventData.endDateTime.toDate(),
+                imageUrl: eventData.imageUrl,
+                isFree: eventData.isFree,
+                location: eventData.location,
+                price: eventData.price,
+                startDateTime: eventData.startDateTime.toDate(),
+                title: eventData.title,
+                url: eventData.url,
+              },
+              path: doc.ref.path,
+            } as CreateEventParams;
+          })
+          .filter(
+            (event) =>
+              categoryId === event.event.categoryId && id !== event.userId
+          ); // Filter events based on the categoryId
+        setEventsWithSameCategory(fetchedEvents);
+      } catch (error) {
+        console.log("Error-eventsID", error);
+      }
+    };
     fetchEvents();
-    fetchEventsWithSameCategory()
+    fetchEventsWithSameCategory();
   }, []);
- 
+
   return (
     <>
-
       <section className="flex justify-center   bg-gray-100  bg-contain ">
         <div className="grid grid-cols-1 md:grid-cols-2 2xl:max-w-7xl">
-            {events.map((event) => (
-              <>
-              <div key={event.userId} className="flex w-full  m-5 object-fit">
-              <Image
-              src={event.event.imageUrl}
-            className="max-h-[100vh] object-contain object-center 2xl:max-h[100vh] "
-            width={1000}
-            height={1000}
-            alt="image"
-          />
-              {/* <Image
+          {events.map((event) => (
+            <React.Fragment key={event.userId}>
+              <div className="flex w-full  m-5 object-fit">
+                <Image
+                  key={event.event.imageUrl}
                   src={event.event.imageUrl}
-                  alt="event emage"
-                  width={300}
-                  height={150}
-                  className="flex w-full flex-col transition duration-300 shadow-xl"
-                /> */}
+                  className="max-h-[100vh] object-contain object-center 2xl:max-h[100vh] "
+                  width={1000}
+                  height={1000}
+                  alt="image"
+                />
               </div>
 
-               <div
+              <div
                 key={event.event.categoryId}
                 className="flex w-full flex-col m-5 gap-8 p-5 md:p-10  bg-white  transition duration-300 shadow-xl"
               >
                 <div className="flex w-full flex-col gap-8 p-6 md:p-10">
                   <h2 className="h2-bold">{event.event.title}</h2>
-                 
+
                   <div className="flex flex-col gap-3 sm:flex-row items-center">
                     <div className="flex gap-3 flex-center">
                       <p className="p-bold-20 rounded-full bg-green-500/10 px-5 py-2 text-green-700">
@@ -168,10 +164,10 @@ const EventDetails = () => {
                   </div>
                 </div>
               </div>
-              </>
-                    ))}
-                 </div>
-               </section>
+            </React.Fragment>
+          ))}
+        </div>
+      </section>
       <section className="wrapper my-8 flex flex-col gap-8 md:gap-12 ">
         <h2 className="h2-bold">Related Events</h2>
         <Collection
